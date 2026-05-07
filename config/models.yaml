@@ -1,0 +1,39 @@
+defaults:
+  planner: "gpt-5.3-codex"
+  builder: "gpt-5.3-codex"
+  reviewer: "gpt-5.3-codex"
+  qa: "gpt-5.3-codex"
+  ops: "gpt-5.3-codex"
+
+reasoning_effort:
+  pm: "high"
+  dev: "medium"
+  qa: "high"
+  ops: "medium"
+  orchestrator: "high"
+
+role_routing:
+  orchestrator:
+    primary: "gpt-5.3-codex"
+    fallback: "gpt-5.4-mini"
+  pm:
+    primary: "gpt-5.3-codex"
+    fallback: "gpt-5.4-mini"
+  dev:
+    primary: "gpt-5.3-codex"
+    fallback: "gpt-5.4"
+  qa:
+    primary: "gpt-5.3-codex"
+    fallback: "gpt-5.4-mini"
+  ops:
+    primary: "gpt-5.3-codex"
+    fallback: "gpt-5.4-mini"
+
+upgrade_policy:
+  trigger_conditions:
+    - "P0 production incident"
+    - "architecture decision"
+    - "critical bug root cause unresolved after 2 attempts"
+  downgrade_conditions:
+    - "daily budget reached 80%"
+    - "non-critical drafting tasks"
